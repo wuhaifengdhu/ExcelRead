@@ -34,5 +34,5 @@ if __name__ == '__main__':
     convert_and_store(excel_file_path, store_file_path)
 
     # Test read data from store file
-    data = load_data(store_file_path)
-    print data[0]
+    store_data = load_data(store_file_path)
+    print store_data[0]

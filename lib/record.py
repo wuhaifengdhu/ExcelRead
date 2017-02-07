@@ -25,7 +25,18 @@ class Record(object):
     @staticmethod
     def _build_educations(raw_educations):
         raw_educations = Record._pretreatment_data(raw_educations)
-        return [education.split('|') for education in raw_educations.split('///')]
+        educations = []
+        for education in raw_educations.split('///'):
+            if '|' not in education:
+                continue
+            columns = education.split('|')
+            if ',' in columns[1]:
+                columns.insert(1, columns[1].split(',')[0])
+                columns[2] = ''.join(columns[2].split(',')[1:]).strip()
+            else:
+                columns.insert(1, '')
+            educations.append(columns)
+        return educations
 
     @staticmethod
     def _build_works(raw_works):
