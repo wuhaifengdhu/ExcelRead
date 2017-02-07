@@ -28,6 +28,8 @@ class Record(object):
         educations = []
         for education in raw_educations.split('///'):
             if '|' not in education:
+                print "Not a well written education: %s" % education
+                educations.append([education, '', '', ''])
                 continue
             columns = education.split('|')
             if ',' in columns[1]:
